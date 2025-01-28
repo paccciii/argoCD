@@ -23087,10 +23087,6 @@ spec:
             path: ca.crt
           optional: true
           secretName: argocd-repo-server-tls
-      - name: persistent-storage
-        persistentVolumeClaim:
-        claimName: argocd-nfs-pvc
-      
 ---
 apiVersion: apps/v1
 kind: Deployment
@@ -23164,7 +23160,6 @@ spec:
           name: dexconfig
         - mountPath: /tls
           name: argocd-dex-server-tls
-
       initContainers:
       - command:
         - /bin/cp
@@ -23658,8 +23653,6 @@ spec:
           name: helm-working-dir
         - mountPath: /home/argocd/cmp-server/plugins
           name: plugins
-         - mountPath: /data2
-          name: persistent-storage
       initContainers:
       - command:
         - /bin/cp
